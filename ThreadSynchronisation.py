@@ -20,3 +20,18 @@ class BookingService(threading.Thread):
 
         with BookingService.lock:
             print("BOOKED! for",self.name)
+
+
+b1 = BookingService("b1")
+b2 = BookingService("b2")
+
+# start the thread
+b1.start()
+b2.start()
+
+b1.book()
+b2.book()
+
+# wait will the thread execution completes!
+b1.join()
+b2.join()
