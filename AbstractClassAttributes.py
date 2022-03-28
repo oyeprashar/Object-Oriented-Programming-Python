@@ -1,8 +1,9 @@
-from abc import ABC, abstractmethod, abstractproperty
+from abc import ABC, abstractmethod
 
 class Vehicle(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def color(self):
         pass
     
