@@ -9,5 +9,16 @@ class Vehicle(ABC):
     
 class Car(Vehicle):
 
-    def __init__(self,color):
-        self.color = color
+    def __init__(self,_color):
+        self._color = _color
+    
+    # this will go and get color fron @property color function
+    def getColor(self):
+        return self.color
+
+    @property
+    def color(self):
+        return self._color
+    
+car = Car("RED")
+print(car.color)
