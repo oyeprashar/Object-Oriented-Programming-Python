@@ -1,40 +1,31 @@
-from abc import ABC,abstractmethod
+"""
+Making a class singleton in Python
+"""
 
-class trasactionProcessor(ABC):
+class TransactionProcess:
 
-    @abstractmethod
-    def processTransaction(self,method):
-        pass
+	__instance = None
 
+	# This method is used to get an instance of the class
+	@staticmethod
+	def getInstance():
 
-class UPI(trasactionProcessor):
+		if TransactionProcess.__instance == None:
+			raise Exception("please create the object with the constructor first!")
 
-    __instance = None
-
-    @staticmethod
-    def getInstance():
-
-        if UPI.__instance == None:
-            UPI.__instance = UPI()
-
-        return UPI.__instance
-
-    def __init__(self):
-
-        if UPI.__instance != None:
-            raise Exception("Object already exits! Use getInstance instead!")
-
-        UPI.__instance = self
+		return TransactionProcess.__instance
 
 
-    def processTransaction(self):
-        print("You paid using UPI process")
+	def __init__(self,type):
+
+		if TransactionProcess.__instance != None:
+			raise Exception("Object already exists! Use getInstance method!")
+
+		self.type = type
+
+		TransactionProcess.__instance = self
 
 
-IOB = UPI()
-print(IOB)
-
-IOBVasundhara = UPI.getInstance()
-
-print(IOBVasundhara)
-
+UPI = TransactionProcess("UPI")
+obj = TransactionProcess.getInstance()
+print(obj.type)
